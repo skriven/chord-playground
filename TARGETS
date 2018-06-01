@@ -1,0 +1,5 @@
+finger-auto-test
+hex-test
+*.o
+*.a
+a.out
