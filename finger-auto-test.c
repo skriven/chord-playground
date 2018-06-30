@@ -13,6 +13,18 @@
 
 #define RING_SIZE 40
 
+void
+print_ring(node **ring)
+{
+  node **n;
+  n = ring;
+  system("clear");
+  while (*n != NULL) {
+    print_node(*n);
+    n++;
+  }
+}
+
 void dump_fingers(node *n)
 {
   finger *f;
@@ -36,25 +48,15 @@ fix_and_stabilize(node **ring)
   node **n;
   for (i = RING_SIZE;i >= 0; --i) {
     n = ring;
+    print_ring(ring);
     while (*n != NULL) {
          chord_stabilize(*n);
          chord_fix_fingers(*n);
          n++;
     }
+    usleep(850);
   }
 }
-
-void
-print_ring(node **ring)
-{
-  node **n;
-  n = ring;
-  while (*n != NULL) {
-    print_node(*n);
-    n++;
-  }
-}
-
 
 int
 main (void)
@@ -81,7 +83,6 @@ main (void)
   }
 
   fix_and_stabilize(ring);
-  print_ring(ring);
 
   for (i = 0; i < RING_SIZE; i++) {
     free(ring[i]);

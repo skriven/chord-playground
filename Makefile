@@ -13,7 +13,7 @@ hex-test: hex-test.c sha1.o tools.o
 	$(cc) $(ggdb) $(cflags) -o hex-test sha1.o tools.o hex-test.c
 
 finger-auto-test: libchord.a
-	$(cc) $(ggdb) $(cflags) -o finger-auto-test finger-auto-test.c libchord.a -lgmp
+	$(cc) $(ggdb) $(cflags) -static -o finger-auto-test finger-auto-test.c libchord.a -lgmp -lowfat
 
 libchord.a: chord.o sha1.o tools.o finger.o
 	ar cr libchord.a chord.o sha1.o tools.o finger.o
